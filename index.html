@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bali 2027 projektterkép</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Mulish:wght@400;600;700&display=swap">
+<style>
+/* Layout: zöld fejléc-sáv, alatta döntések → idővonal → szereplők → 14 szál kártyákon, személy-szűrővel */
+:root{
+  --bg:#f6f1e7; --surface:#fffdf8; --ink:#1f2b24; --muted:#5f6b62; --line:#e2d9c6;
+  --green:#1f3d33; --green-2:#2c5446; --gold:#b8914a; --gold-soft:#efe3c8; --on-green:#f6f1e7;
+  --ok:#3f7a52; --ok-bg:#e1efe5; --warn:#a8741a; --warn-bg:#f6e8cc; --crit:#a5432f; --crit-bg:#f5dfd8; --idle:#6d6f73; --idle-bg:#e9e7e2;
+  --display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body:"Mulish", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a16; --surface:#18241e; --ink:#ece6d8; --muted:#a9b2a8; --line:#2c3a32;
+  --green:#0c1612; --green-2:#1f3d33; --gold:#d4ae6a; --gold-soft:#3a3222; --on-green:#ece6d8;
+  --ok:#7dc195; --ok-bg:#1d3326; --warn:#e2b25e; --warn-bg:#3a2e17; --crit:#e48a75; --crit-bg:#3e221c; --idle:#b4b4b0; --idle-bg:#2a2f2c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111a16; --surface:#18241e; --ink:#ece6d8; --muted:#a9b2a8; --line:#2c3a32;
+  --green:#0c1612; --green-2:#1f3d33; --gold:#d4ae6a; --gold-soft:#3a3222; --on-green:#ece6d8;
+  --ok:#7dc195; --ok-bg:#1d3326; --warn:#e2b25e; --warn-bg:#3a2e17; --crit:#e48a75; --crit-bg:#3e221c; --idle:#b4b4b0; --idle-bg:#2a2f2c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.band{background:var(--green);color:var(--on-green)}
+header.band .wrap{padding-block:40px 34px;display:grid;gap:18px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,5vw,54px);line-height:1.05;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:30px;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:700;font-size:22px;margin:0;line-height:1.2}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;font-size:14px}
+.facts b{color:var(--gold);font-weight:700;margin-right:6px}
+.updated{font-size:13px;opacity:.8}
+section{padding-block:36px 8px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.sec-head p{margin:0;color:var(--muted);font-size:14px}
+/* Döntések */
+.decisions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.dec{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.dec .q{font-weight:700}
+.dec .who{font-size:13px;color:var(--muted)}
+.dec .who b{color:var(--ink)}
+/* Idővonal */
+.timeline{overflow-x:auto;padding-bottom:6px}
+.tl{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:0;min-width:900px;position:relative}
+.tl::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:var(--line)}
+.tick{position:relative;padding:30px 12px 0 0;font-size:13px}
+.tick::before{content:"";position:absolute;top:9px;left:0;width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--gold)}
+.tick.key::before{background:var(--gold)}
+.tick .d{font-weight:700;font-variant-numeric:tabular-nums;color:var(--green-2)}
+:root[data-theme="dark"] .tick .d{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tick .d{color:var(--gold)}}
+.tick .t{color:var(--ink)}
+.tick .s{color:var(--muted);font-size:12px}
+/* Szereplők */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.person{border-left:3px solid var(--gold);padding:6px 12px;background:var(--surface);border-radius:0 8px 8px 0;min-width:0}
+.person .n{font-weight:700}
+.person .r{font-size:13px;color:var(--muted)}
+/* Szűrő */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--green-2);color:var(--on-green);border-color:var(--green-2)}
+.chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sfb{font:inherit;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:2px solid transparent;cursor:pointer;background:var(--surface);color:var(--muted)}
+.sfb[data-s="all"]{border-color:var(--line)}
+.sfb[aria-pressed="true"]{border-color:currentColor;box-shadow:0 0 0 1px currentColor}
+.sfb[data-s="all"][aria-pressed="true"]{background:var(--green-2);color:var(--on-green);border-color:var(--green-2);box-shadow:none}
+.sfb:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--muted);margin-bottom:14px}
+/* Szálak */
+.threads{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.thread{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.thread .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.num{font-family:var(--display);font-size:15px;color:var(--gold);font-weight:700;letter-spacing:.04em}
+.pill{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.st-ok{color:var(--ok);background:var(--ok-bg)} .st-warn{color:var(--warn);background:var(--warn-bg)}
+.st-crit{color:var(--crit);background:var(--crit-bg)} .st-idle{color:var(--idle);background:var(--idle-bg)}
+.status{font-size:14px;color:var(--muted);margin:0}
+.owners{display:flex;flex-wrap:wrap;gap:6px}
+.owner{font-size:12px;font-weight:600;background:var(--gold-soft);color:var(--ink);padding:2px 8px;border-radius:6px}
+ul.next{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
+ul.next li::marker{color:var(--gold)}
+.dl{font-variant-numeric:tabular-nums;font-weight:700;color:var(--green-2);white-space:nowrap}
+:root[data-theme="dark"] .dl{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dl{color:var(--gold)}}
+.who-i{color:var(--muted)}
+.empty{color:var(--muted);font-size:14px}
+footer{padding-block:36px 48px;color:var(--muted);font-size:13px}
+@media (max-width:520px){.threads,.decisions{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.thread{transition:opacity .15s}}
+</style>
+</head>
+<body>
+
+
+<header class="band"><div class="wrap">
+  <div class="eyebrow">For Women. For Life. · Projektterkép</div>
+  <h1>Bali 2027 – minden szál egy helyen</h1>
+  <div class="facts">
+    <span><b>Utazás</b>2027. 02. 28. – 03. 12.</span>
+    <span><b>Helyszínek</b>Ubud · Pemuteran · Sanur</span>
+    <span><b>Létszám</b>min. 8 – max. 15 fő</span>
+    <span><b>Díj</b>1 490 000 Ft/fő, 40% előleg</span>
+    <span><b>Hirdetési keret</b>400 000 Ft</span>
+  </div>
+  <div class="updated">Állapot: 2026. október 29. · Összefogja: Kis Eszter (operatív PM)</div>
+</div></header>
+
+<main class="wrap">
+
+<section id="szereplok">
+  <div class="sec-head"><h2>Szereplők</h2><p>A projekt magcsapata.</p></div>
+  <div class="people">
+    <div class="person"><div class="n">Eszter Eichhardt</div><div class="r">For Life, döntéshozó, pénzügyi jóváhagyás</div></div>
+    <div class="person"><div class="n">Eicher Balázs</div><div class="r">Ügyvezető, nagyköveti egyezségek, Laura</div></div>
+    <div class="person"><div class="n">Kis Eszter</div><div class="r">Operatív PM, érdeklődők, levelek, rendezvény</div></div>
+    <div class="person"><div class="n">Fekete Nóri</div><div class="r">PPC, social, kampányterv</div></div>
+    <div class="person"><div class="n">Hortoványi Sára</div><div class="r">Koncepció, funnel, a rendezvény házigazdája</div></div>
+    <div class="person"><div class="n">Sipőcz Evelin</div><div class="r">Helyi kapcsolat Balin, csoportkísérő</div></div>
+  </div>
+</section>
+
+<section id="idovonal">
+  <div class="sec-head"><h2>Idővonal</h2><p>A kitöltött pontok fix időpontok, a többi tervezett.</p></div>
+  <div class="timeline"><div class="tl">
+    <div class="tick key"><div class="d">okt. 30.</div><div class="t">Teszthirdetések indulnak</div><div class="s">Bemelegítő kampány, 80e Ft</div></div>
+    <div class="tick key"><div class="d">nov. 4–25.</div><div class="t">Forgatás Balin</div><div class="s">Sára, Evelin, Balázs kint</div></div>
+    <div class="tick"><div class="d">nov. 9. és 16. hete</div><div class="t">Nagyköveti tartalmak</div><div class="s">Heti 1 reels + 3–4 story</div></div>
+    <div class="tick"><div class="d">nov. 20–28.</div><div class="t">Workshopjegyek hirdetése</div><div class="s">Tesztkeret: 100e Ft</div></div>
+    <div class="tick"><div class="d">nov. 26–28.</div><div class="t">Webinár (Zoom)</div><div class="s">Szavazás folyamatban</div></div>
+    <div class="tick"><div class="d">dec. 5–10.</div><div class="t">Rendezvény, T62 Hotel</div><div class="s">Opció, a dátum még nyitott</div></div>
+    <div class="tick key"><div class="d">dec. vége</div><div class="t">A helyek értékesítésének vége</div><div class="s">Analit-szerződés szerint</div></div>
+    <div class="tick key"><div class="d">2027. jan. vége</div><div class="t">Maradék díj befizetése</div><div class="s">Indulás előtt 1 hónappal</div></div>
+    <div class="tick key"><div class="d">2027. febr. 28.</div><div class="t">Indulás</div><div class="s">Budapest → Ubud</div></div>
+  </div></div>
+</section>
+
+<section id="dontesek">
+  <div class="sec-head"><h2>Döntésre vár</h2><p>Ezek nélkül több feladat is áll.</p></div>
+  <div class="decisions">
+    <div class="dec"><div class="q">Webinár időpontja: nov. 26., 27. vagy 28.?</div><div class="who">Szavazás: <b>mindenki</b> · Lezárja: <b>Kis Eszter</b></div></div>
+    <div class="dec"><div class="q">Rendezvény dátuma: dec. 5–10.</div><div class="who">Döntés: <b>Eszter E., Nóri</b> · Laura: <b>Balázs</b></div></div>
+    <div class="dec"><div class="q">Evelin és Sára szerepének szöveges módosítása a landingen</div><div>A fotójuk helyére hangulatkép kerül.</div><div class="who">Input: <b>Sára, Evelin</b></div></div>
+    <div class="dec"><div class="q">Evelin blokkja a rendezvényen</div><div>Evelin még finomhangolja a saját blokkját, ehhez tőle kell bekérni az inputot.</div><div class="who">Döntés: <b>Evelin</b> · Bekéri: <b>Kis Eszter</b></div></div>
+    <div class="dec"><div class="q">Workshop jegyára és a kedvezmény feltételei</div><div>22 500 vagy 25 000 Ft, a webinár résztvevőinek 35% kedvezménnyel.</div><div class="who">Döntés: <b>Eszter E., Balázs</b> · Könyvelő</div></div>
+    <div class="dec"><div class="q">Hirdetési keret átcsoportosítása</div><div>Mehet-e a keretből a workshopjegyek hirdetésére nov. 20-tól, és emelhető-e, ha jönnek az eladások?</div><div class="who">Válasz: <b>Eszter E.</b></div></div>
+  </div>
+</section>
+
+<section id="szalak">
+  <div class="sec-head"><h2>Feladatok</h2><p>A kártyák kategóriák. Személyre szűrve csak az ő feladatai látszanak.</p></div>
+  <div class="filters" id="filters" role="group" aria-label="Szűrés személy szerint"></div>
+  <div class="legend" id="stfilter" role="group" aria-label="Szűrés státusz szerint">
+    <button class="pill sfb" data-s="all" aria-pressed="true">Minden státusz</button><button class="pill sfb st-crit" data-s="crit" aria-pressed="false">Sürgős</button><button class="pill sfb st-warn" data-s="warn" aria-pressed="false">Döntésre vár</button><button class="pill sfb st-ok" data-s="ok" aria-pressed="false">Folyamatban</button><button class="pill sfb st-idle" data-s="idle" aria-pressed="false">Nem indult</button>
+  </div>
+  <div class="threads" id="threads"></div>
+  <p class="empty" id="empty" hidden>Ehhez a szűréshez nincs feladat.</p>
+</section>
+
+</main>
+<footer class="wrap">Források: kick-off és követő meetingek (okt. 14., 21., 29.), a „Bali retreat – For Life” levelezés, Nóri kampányterve (okt. 29.).</footer>
+
+<script>
+const S={crit:["st-crit","Sürgős"],warn:["st-warn","Döntésre vár"],ok:["st-ok","Folyamatban"],idle:["st-idle","Nem indult"]};
+/* x: [feladat, [felelősök], határidő] – a szűrő feladatonként működik */
+const KE="Kis Eszter",EE="Eszter E.";
+const T=[
+ {t:"Projektmenedzsment",s:"ok",st:"",x:[["A projekt koordinálása, döntések és határidők követése",[KE],"folyamatos"]]},
+ {t:"Weboldal és kommunikáció",s:"crit",st:"",x:[["Landing szövegének módosítása a webinárhoz igazodva",[KE,"Nóri"],"okt. 29."],["„Mit élsz át” blokk módosítása Sára és Evelin szerepe kapcsán – szöveg- és képi input",["Sára","Evelin"],""],["Webinár-feliratkozó blokk és köszönőoldalak (webinár és jelentkezés)",[KE],"nov. 3."],["Az Analit oldalának szinkronizálása – input átadása a For Life oldaláról",[KE],"nov. 3."]]},
+ {t:"Webinár",s:"warn",st:"",x:[["Szavazás lezárása, időpont kihirdetése",[KE],""],["Témák visszajelzésének kérése",[KE],"nov. 3."],["Zoom, MailerLite-automatizmus, emlékeztetők",[KE],""],["Főpróba a szereplőkkel",[KE],""]]},
+ {t:"Rendezvény (workshop)",s:"warn",st:"",x:[["A program pontos egyeztetése a résztvevőkkel",[KE],""],["Technikai feltételek: jegyértékesítés, catering, weboldal, influenszerek bevonása, kommunikáció",[KE],""],["Számlázás egyeztetése",[EE],""],["Evelin blokkjának finomhangolása, input",["Evelin"],""],["Laura időpontjának egyeztetése",["Balázs"],""]]},
+ {t:"Érdeklődők kezelése",s:"crit",st:"Az érdeklődőknek Kis Eszter küldi ki az e-maileket, és a hívásokat is ő indítja. További kérdések esetén Sárával egyeztet. Minden levélben másolatban szerepel az Analit.",x:[["Részletes tájékoztató levél a 2 érdeklődőnek",[KE],"nov. 2."],["Céges marketinges telefonszám",[KE],"okt. 31."],["Balázs ismerőseinek e-mail címei",[EE],"nov. 3."],["Szakmai kérdések megválaszolása",["Sára"],"folyamatos"]]},
+ {t:"PPC",s:"ok",st:"Webinár-regisztráció: 220e Ft, kb. 147 regisztráció 1 500 Ft-tal. Workshop-teszt: 100e Ft. Cél: 50 jegy.",x:[["Teszthirdetések indítása",["Nóri"],"okt. 30."],["Webinár-regisztrációs kampány",["Nóri"],"időpont után"],["Workshopjegyek hirdetése",["Nóri"],"nov. 20."]]},
+ {t:"Organikus social",s:"ok",st:"Heti 3–4 megjelenés a nagykövetekkel együtt. Az első poszt kint van.",x:[["Tartalomnaptár frissítése",["Nóri"],"folyamatos"],["LinkedIn bevonása?",["Nóri"],"nyitott"]]},
+ {t:"Nagyköveti program, PR és média",s:"warn",st:"Laura és Gina a fő arcok. Gréta, Judit és Andi egyeztetés alatt, a vállalási keret Balázsnál van. Ottó (média) és a Soldrops állapota nem ismert.",x:[["Egyezségek: Gréta, Judit, Andi",["Balázs"],"nov. 6."],["Ottó és Soldrops visszajelzése",["Sára"],"nov. 6."]]},
+ {t:"Tartalomgyártás Balin",s:"idle",st:"",x:[["Témák a program kapcsán, amelyekhez képes és videós inputot kapunk – konkrét témák megjelölése",["Nóri"],"nov. 3."],["A 3 vendég felvételének megszervezése (Budapesten)",[KE],"nov. 14."],["Vendégek a webináron?",[KE],"nov. 7."]]},
+ {t:"Saját adatbázis és hírlevél",s:"idle",st:"A feliratkozó leadek szegmentálása.",x:[["Novemberi hírlevél 3 szegmensre",[KE],"nov. 12."]]}
+];
+const people=["Mindenki","Kis Eszter","Eszter E.","Balázs","Nóri","Sára","Evelin"];
+const elT=document.getElementById("threads"),elF=document.getElementById("filters"),elE=document.getElementById("empty");
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function mine(a,p){return p==="Mindenki"||a[1].includes(p)}
+function step(a){const meta=[a[1].length?`<span class="who-i">${esc(a[1].join(", "))}</span>`:"",a[2]?`<span class="dl">${esc(a[2])}</span>`:""].filter(Boolean).join(" · ");return `<li>${esc(a[0])}${meta?" · "+meta:""}</li>`}
+let curS="all";
+function render(p){
+  const list=T.map((th,i)=>({...th,n:String(i+1).padStart(2,"0"),y:th.x.filter(a=>mine(a,p))})).filter(th=>th.y.length&&(curS==="all"||th.s===curS));
+  elT.innerHTML=list.map(th=>{const [c,l]=S[th.s];
+    return `<article class="thread"><div class="top"><div><div class="num">${th.n}</div><h3>${esc(th.t)}</h3></div><span class="pill ${c}">${l}</span></div>
+    ${th.st&&p==="Mindenki"?`<p class="status">${esc(th.st)}</p>`:""}
+    <ul class="next">${th.y.map(step).join("")}</ul></article>`}).join("");
+  elE.hidden=list.length>0;
+}
+let cur="Mindenki";
+try{const s=localStorage.getItem("bali-filter");if(s&&people.includes(s))cur=s}catch(e){}
+elF.innerHTML=people.map(p=>`<button class="chip" id="f-${p.replace(/\W+/g,'')}" aria-pressed="${p===cur}">${esc(p)}</button>`).join("");
+elF.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;cur=b.textContent;
+  elF.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));
+  try{localStorage.setItem("bali-filter",cur)}catch(e){} render(cur)});
+const elS=document.getElementById("stfilter");
+elS.addEventListener("click",e=>{const b=e.target.closest(".sfb");if(!b)return;curS=b.dataset.s;
+  elS.querySelectorAll(".sfb").forEach(c=>c.setAttribute("aria-pressed",c===b));render(cur)});
+render(cur);
+</script>
+
+</body>
+</html>
